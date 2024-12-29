@@ -1,7 +1,7 @@
 {
   "py/object": "pros.conductor.project.Project",
   "py/state": {
-    "project_name": "FBRev2",
+    "project_name": "FBRev2test",
     "target": "v5",
     "templates": {
       "LemLib": {
@@ -344,7 +344,8 @@
     "upload_options": {
       "description": "sigma sigma boy",
       "icon": "alien",
-      "after": "run"
+      "after": "run",
+      "slot": 1
     },
     "use_early_access": true
   }

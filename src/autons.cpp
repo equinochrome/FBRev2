@@ -30,7 +30,7 @@ void test2(){
 };
 
 void BlueNeg4Ring(){
-
+BlueTeam=true;
 // BLUE NEG W/ ALLIANCE STAKE
 
 // set up
@@ -73,6 +73,7 @@ while(true){
 };
 
 void BluePos2(){
+BlueTeam=true;
 
 // BLUE NEG SOLO NO PUSH
 

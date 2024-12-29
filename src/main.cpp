@@ -47,58 +47,42 @@ stormlib::aRGB_manager LEDmanager(&strand1, nullptr, nullptr, nullptr,
 
 });
 ASSET(mogopath_txt);
-/**
- * Runs initialization code. This occurs as soon as the program is started.
- *
- * All other competition modes are blocked by initialize; it is recommended
- * to keep execution time for this mode under a few seconds.
- */
 
+const int numStates = 1;
+//make sure these are in centidegrees (1 degree = 100 centidegrees)
+int states[numStates] = {330};
+int currState = 0;
+int target = 0;
+
+void nextState() {
+        
+    target = states[currState];
+}
+
+void liftControl() {
+    double kp = .1;
+    double error = target - rotationSensor3.get_position();
+    double velocity = kp * error;
+    LB.move(velocity);
+}
 
 
 void initialize() {
-    LEDmanager.initialize(20); // LEDs will initialize green, you can change the
-    LB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-    chassis.calibrate();
-    LB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-    console.println("calibrated");
-       LB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-    pros::delay(100);
-        console.println("Erm what the sigma");
-      strand1.setColor(0xFfffff);
-        
+    pros::Task liftControlTask([]{
+        while (true) {
+            liftControl();
+            pros::delay(10);
+        }
+    });
 
 }
 
-/**
- * Runs while the robot is in the disabled state of Field Management System or
- * the VEX Competition Switch, following either autonomous or opcontrol. When
- * the robot is enabled, this task will exit.
- */
+
 void disabled() {}
 
-/**
- * Runs after initialize(), and before autonomous when connected to the Field
- * Management System or the VEX Competition Switch. This is intended for
- * competition-specific initialization routines, such as an autonomous selector
- * on the LCD.
- *
- * This task will exit when the robot is enabled and autonomous or opcontrol
- * starts.
- */
 void competition_initialize() {}
 
-/**
- * Runs the user autonomous code. This function will be started in its own task
- * with the default priority and stack size whenever the robot is enabled via
- * the Field Management System or the VEX Competition Switch in the autonomous
- * mode. Alternatively, this function may be called in initialize or opcontrol
- * for non-competition testing purposes.
- *
- * If the robot is disabled or communications is lost, the autonomous task
- * will be stopped. Re-enabling the robot will restart the task, not re-start it
- * from where it left off.
- */
+
 void autonomous() {
     LB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
     pros::delay(100);
@@ -108,30 +92,21 @@ void autonomous() {
 }
 
 
-/**
- * Runs the operator control code. This function will be started in its own task
- * with the default priority and stack size whenever the robot is enabled via
- * the Field Management System or the VEX Competition Switch in the operator
- * control mode.
- *
- * If no competition control is connected, this function will run immediately
- * following initialize().
- *
- * If the robot is disabled or communications is lost, the
- * operator control task will be stopped. Re-enabling the robot will restart the
- * task, not resume it from where it left off.
- */
+
 
 
 void opcontrol() {   
 bool MogoState = false;
 LB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-LB.brake();
-LB.tare_position();
+
 
     // loop forever
     while (true) {
-        
+        	   
+               
+        if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_R1)) {
+			nextState();
+		}
         // get left y and right y positions
         int leftY = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
         int rightY = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
@@ -139,9 +114,6 @@ LB.tare_position();
     // move the robot
         chassis.tank(leftY, rightY);
 
-        LB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-        LB.brake();
-      
         if(controller.get_digital(DIGITAL_R2)){
          Hook.move(-127);
          Intake.move(127);
@@ -155,23 +127,10 @@ LB.tare_position();
             Intake.move(0);
         }
 
-        
+    	
 
-        if(controller.get_digital(DIGITAL_R1)){
-            if(distance_sensor.get() < 125){
-                LB.move(-127);
-            }
-        } else if(controller.get_digital(DIGITAL_L1)){
-            LB.move(-127);
-        } else if(controller.get_digital(DIGITAL_L2)){
-            if(distance_sensor.get() > 50){
-                LB.move(127);
-            } else{
-                LB.brake();
-            }
-        } else{
-            LB.brake();
-        }
+	
+
 
         
         if(controller.get_digital(DIGITAL_LEFT)){
