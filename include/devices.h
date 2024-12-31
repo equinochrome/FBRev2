@@ -41,7 +41,7 @@ static pros::Imu imu(14);
 // create a v5 rotation sensor on port 7
 static pros::Rotation rotation_sensor(-1);
 static pros::Rotation rotation_sensor2(19);
-static pros::Rotation rotationSensor3(3);
+static pros::Rotation rotationSensor3(-3);
 // create a distance sensor for lb distance
 static pros::Distance color_dist(7);
 
