@@ -48,9 +48,9 @@ stormlib::aRGB_manager LEDmanager(&strand1, nullptr, nullptr, nullptr,
 });
 ASSET(mogopath_txt);
 
-const int numStates = 1;
+const int numStates = 3;
 //make sure these are in centidegrees (1 degree = 100 centidegrees)
-int states[numStates] = {330};
+int states[numStates] = {0, 3700, 14000};
 int currState = 0;
 int target = 0;
 
@@ -63,21 +63,37 @@ void nextState() {
 }
 
 void liftControl() {
-    double kp = .1;
+    double kp = .015;
     double error = target - rotation_sensor3.get_position();
     double velocity = kp * error;
     LB.move(velocity);
 }
 
+void BlueColorSort(){
+    BlueTeam = true;
+ if (color.get_hue() >= 209 && color_dist.get() < 55) {
+        Hook.move(0);
+    }
+}
+
+
+
 
 void initialize() {
+//rotation_sensor3.reset_position();
+chassis.calibrate();
     pros::Task liftControlTask([]{
         while (true) {
             liftControl();
             pros::delay(10);
         }
     });
-
+    pros::Task BlueColorSortTask([]{
+        while (true) {
+            BlueColorSort();
+            pros::delay(10);
+        }
+    });
 }
 
 
@@ -118,19 +134,20 @@ LB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
         chassis.tank(leftY, rightY);
 
         if(controller.get_digital(DIGITAL_R2)){
+        color .set_led_pwm(100);
          Hook.move(-127);
          Intake.move(127);
         }
         else if(controller.get_digital(DIGITAL_X)){
+            color .set_led_pwm(0);
             Hook.move(127);
             Intake.move(-127);
 
         } else{
+            color .set_led_pwm(0);
             Hook.move(0);
             Intake.move(0);
         }
-
-    	
 
 	
 

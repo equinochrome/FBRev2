@@ -17,12 +17,12 @@ static pros::MotorGroup right_motors({12,20,-15}, pros::MotorGearset::blue);
 
 static pros::Motor Hook(-10, pros::MotorGearset::blue);
 static pros::Motor Intake(-18, pros::MotorGearset::blue);
-static pros::Motor LB (17, pros::MotorGearset::green);
+static pros::Motor LB (-17, pros::MotorGearset::green);
 
 static pros::adi::DigitalOut IntakePiston('C');
 static pros::adi::DigitalOut Doinker('D'); 
 static pros::adi::DigitalOut Mogo('E'); 
-static pros::Optical color(19);
+static pros::Optical color(4);
 // drivetrain settings
 static lemlib::Drivetrain drivetrain(&left_motors, // left motor group
                               &right_motors, // right motor group
@@ -40,10 +40,10 @@ static pros::Imu imu(14);
 // create a v5 rotation sensor on port 7
 static pros::Rotation rotation_sensor(-1);
 static pros::Rotation rotation_sensor2(19);
-static pros::Rotation rotation_sensor3(3);
+static pros::Rotation rotation_sensor3(-3);
 
 // create a distance sensor for lb distance
-static pros::Distance distance_sensor(2);
+static pros::Distance color_dist(7);
 
 
 // replace 1 with the port the rotation sensor is connected to
