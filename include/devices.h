@@ -23,6 +23,7 @@ static pros::adi::DigitalOut IntakePiston('C');
 static pros::adi::DigitalOut Doinker('D'); 
 static pros::adi::DigitalOut Mogo('E'); 
 static pros::Optical color(4);
+static pros::Optical color(4);
 // drivetrain settings
 static lemlib::Drivetrain drivetrain(&left_motors, // left motor group
                               &right_motors, // right motor group
@@ -40,8 +41,7 @@ static pros::Imu imu(14);
 // create a v5 rotation sensor on port 7
 static pros::Rotation rotation_sensor(-1);
 static pros::Rotation rotation_sensor2(19);
-static pros::Rotation rotation_sensor3(-3);
-
+static pros::Rotation rotationSensor3(3);
 // create a distance sensor for lb distance
 static pros::Distance color_dist(7);
 
@@ -110,3 +110,4 @@ static lemlib::Chassis chassis(drivetrain, // drivetrain settings
 // Other stuff
 static bool BlueTeam = false;
 static bool RedTeam = false;
+

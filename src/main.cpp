@@ -102,6 +102,7 @@ void disabled() {}
 void competition_initialize() {}
 
 
+
 void autonomous() {
     LB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
     pros::delay(100);
@@ -114,13 +115,20 @@ void autonomous() {
 
 
 
+
 void opcontrol() {   
 bool MogoState = false;
 LB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 
 
+
     // loop forever
     while (true) {
+        	   
+               
+        if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_R1)) {
+			nextState();
+		}
         	   
                
         if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_R1)) {
@@ -132,6 +140,7 @@ LB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 
     // move the robot
         chassis.tank(leftY, rightY);
+
 
         if(controller.get_digital(DIGITAL_R2)){
         color .set_led_pwm(100);
