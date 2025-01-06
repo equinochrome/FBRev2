@@ -8,7 +8,7 @@ void BlueNeg4Ring();
 
 void BluePos2();
 
-void BlueNeg1();
+void BlueSoloAWAPPush();
 
 void RedPos1();
 

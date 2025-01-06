@@ -152,156 +152,6 @@ chassis.moveToPoint(8, -12, 3000, {.forwards = false}, false);
 }
 
 
-void BlueNeg1(){
-    BlueTeam = true;
-    chassis.setBrakeMode(pros::E_MOTOR_BRAKE_HOLD);
-    chassis.setPose(62,12, 0);
-    chassis.moveToPose(62, 0, 0, 2000, {.forwards = false, .lead = .1, .minSpeed = 60});
-    chassis.turnToHeading(270, 800);
-    chassis.moveToPose(69.5, 0, 270, 2000, {.forwards = false, .lead = .25, .minSpeed = 60});
-    pros::delay(500);
-    Hook.move(-127);
-    pros::delay(500);
-    Hook.move(0);
-    chassis.moveToPose(50, 13, 300, 4000, {.lead = .4, .minSpeed = 100});
-    chassis.turnToHeading(105, 1000);
-    chassis.moveToPose(34, 23.7, 100, 2000, {.forwards = false, .lead = .25, .maxSpeed = 80});
-    pros::delay(1000);
-    Mogo.set_value(true);
-    chassis.turnToHeading(0, 800);
-    Hook.move(127);
-    Hook.move(-127);
-    chassis.moveToPose(36, 40, 345, 2000, {.lead = .25});
-    chassis.turnToHeading(270, 800);
-    chassis.moveToPose(20, 45, 280, 2000, {.lead = .4});
-    chassis.swingToHeading(325, lemlib::DriveSide::LEFT, 800);
-    chassis.moveToPose(20, 50, 305, 2000, {.lead = .6});
-    pros::delay(500);
-    chassis.moveToPose(36, 23.7, 305, 2000, {.forwards = false, .lead = .25, .minSpeed = 100});
-    chassis.turnToHeading(305, 800);
-    pros::delay(400);
-    Hook.move(0);
-    Hook.move(0);
-    chassis.moveToPose(24, 12, 135, 2000, {.lead = .25, .minSpeed = 100});
-    pros::delay(400);
-};
-
-void RedPos1(){
-    //Set up
-int future2 = pros::millis() + 10000;
-chassis.setBrakeMode(pros::E_MOTOR_BRAKE_HOLD);
-LB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-BlueTeam = false;
-chassis.setPose(-52,-57, -270);
-// Get mogo and drive back
-
-chassis.moveToPose( -15.5, -53.75 , -275, 2000, { .lead = .4, .minSpeed = 127},false);
-Doinker.set_value(true);
-chassis.moveToPose( -55, -58 , -205, 2000, { .forwards = false,  .lead = .4, .minSpeed = 127});
-pros::delay(1600);
-Doinker.set_value(false);
-chassis.turnToPoint(-44, -55, 700, {.minSpeed = 80, .earlyExitRange= 3});
-chassis.moveToPoint(-44, -30, 1000);
-chassis.turnToHeading(-90, 700, {.minSpeed = 80, .earlyExitRange= 3});
-chassis.moveToPose(-36, -60, -25, 2000, {.forwards= false, .minSpeed = 60}, false);
-Mogo.set_value(true);
-pros::delay(200);
-Hook.move(-127);
-pros::delay(1000);
-Mogo.set_value(false);
-IntakePiston.set_value(true);
-//Mogo 2 + Stack by Alliance Stake
-Hook.move(-127);
-chassis.moveToPose(-50, -8, 30, 2000, {.forwards= true, .minSpeed = 85},  false);
-Hook.move(-55);
-chassis.swingToHeading(-45, lemlib::DriveSide::LEFT, 700, {.minSpeed = 80, .earlyExitRange= 3}, false);
-IntakePiston.set_value(false);
-chassis.moveToPose(-12.8, -30.75, -63, 2000, {.forwards = false, .maxSpeed = 54}, false);
-Hook.move(0);
-Mogo.set_value(true);
-pros::delay(200);
-Hook.move(-127);
-//Grab ring + touch ladder
-chassis.turnToHeading(-180, 700);
-pros::delay(500);
-chassis.moveToPoint(-23, -46, 1000, {}, false);
-pros::delay(500);
-chassis.moveToPoint(-48, -48, 2000, {}, false);
-
-
-}
-
-
-void RedNeg1(){
-//SET UP
-    BlueTeam = false;
-    chassis.setBrakeMode(pros::E_MOTOR_BRAKE_HOLD);
-    chassis.setPose(-62,10.5, 0);
-    //ALLIANCE STAKE
-    chassis.moveToPose(-62,-1, 0, 2000, {.forwards = false, .lead = .6, .minSpeed = 60});
-    chassis.turnToHeading(90, 800);
-    chassis.moveToPose(-69, -1, 90, 2000, {.forwards = false, .lead = .25, .minSpeed = 60});
-    pros::delay(500);
-    Hook.move(-127);
-    pros::delay(500);
-    Hook.move(0);
-    chassis.moveToPose(-50, 13, 120, 4000, {.lead = .4, .minSpeed = 100});
-    chassis.turnToHeading(285, 500);
-    //GO TO MOGO
-    chassis.moveToPose(-23, 23.7, 262, 2000, {.forwards = false, .lead = .25, .maxSpeed = 80});
-    pros::delay(1000);
-    Mogo.set_value(true);
-    chassis.turnToHeading(0, 800);
-    //GO TO MID STACK
-    Hook.move(127);
-    Hook.move(-127);
-    chassis.moveToPose(-30, 42, -345, 2000, {.lead = .25});
-    chassis.turnToHeading(-250, 800);
-    chassis.moveToPose(-13, 44, -280, 2000, {.lead = .4});
-    chassis.swingToHeading(-325, lemlib::DriveSide::RIGHT, 800);
-    chassis.moveToPose(-12.5, 52, -295, 2000, {.lead = .6});
-    pros::delay(500);
-    chassis.moveToPose(-35 , 24.7, -285, 2000, {.forwards = false, .lead = .25, .minSpeed = 100});
-    chassis.turnToHeading(-295, 600);
-    pros::delay(400);
-    //LADDER TOUCH
-    chassis.moveToPose(-18, 8, 135, 1000, {.lead = .25, .minSpeed = 100});
-  
-}
-
-void RedNeg2(){
-//SET UP
-    BlueTeam = false;
-    chassis.setBrakeMode(pros::E_MOTOR_BRAKE_HOLD);
-    chassis.setPose(-62,10.5, 0);
-    //ALLIANCE STAKE
-    chassis.moveToPose(-62,-1, 0, 2000, {.forwards = false, .lead = .6, .minSpeed = 60});
-    chassis.turnToHeading(90, 800);
-    chassis.moveToPose(-69, -1, 90, 2000, {.forwards = false, .lead = .25, .minSpeed = 60});
-    pros::delay(500);
-    Hook.move(-127);
-    pros::delay(500);
-    Hook.move(0);
-    chassis.moveToPose(-50, 13, 120, 4000, {.lead = .4, .minSpeed = 100});
-    chassis.turnToHeading(285, 500);
-    //GO TO MOGO
-    chassis.moveToPose(-23, 23.7, 262, 2000, {.forwards = false, .lead = .25, .maxSpeed = 80});
-    pros::delay(1000);
-    Mogo.set_value(true);
-    chassis.turnToHeading(0, 800);
-    //GO TO MID STACK
-    Hook.move(127);
-    Hook.move(-127);
-    chassis.moveToPose(-30, 42, -345, 2000, {.lead = .25});
-    chassis.turnToHeading(-250, 800);
-    chassis.moveToPose(-13, 44, -280, 2000, {.lead = .4});
-    chassis.swingToHeading(-325, lemlib::DriveSide::RIGHT, 800);
-    chassis.moveToPose(-12.5, 52, -295, 2000, {.lead = .6});
-    pros::delay(500);
-    chassis.moveToPose(-35 , 24.7, -285, 2000, {.forwards = false, .lead = .25, .minSpeed = 100});
-    chassis.turnToHeading(-295, 800);
-    pros::delay(400);
-}
 
 void skills(){
 
@@ -537,6 +387,49 @@ Intake.move(-127);
 chassis.moveToPoint(50, -55, 1000, {});
 
 
+}
+void BlueSoloAWAPPush(){
+//Set up
+chassis.setBrakeMode(pros::E_MOTOR_BRAKE_HOLD);
+BlueTeam = true;
+BlueTeam=true;
+// BLUE SOLO AWP PUSH W STAKE
+
+// set up
+chassis.setBrakeMode(pros::E_MOTOR_BRAKE_HOLD);
+LB.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+BlueTeam = true;
+chassis.setPose(60,12, 180);
+
+// score preload
+target = 16100;
+chassis.swingToHeading(138, lemlib::DriveSide::LEFT, 700, {}, false);
+target=0;
+// Turn to alliance bot
+chassis.moveToPoint(60, 24, 700);
+chassis.turnToHeading(0, 500, {lemlib::AngularDirection::CW_CLOCKWISE});
+chassis.moveToPoint(60, 45 , 700);
+Intake.move(80);
+chassis.moveToPoint(55, 20, 1000, {.forwards = false});
+//Turn to goal
+chassis.turnToPoint(24, 28, 800, { .forwards = false});
+chassis.moveToPoint(24, 28, 2000, { .forwards = false, .maxSpeed = 50}, false);
+//Grab and turn to ring
+Mogo.set_value(true);
+pros::delay(100);
+chassis.turnToPoint(16, 55, 1000);
+Hook.move(-127);
+Intake.move(127);
+chassis.moveToPoint(16, 55, 1000);
+Doinker.set_value(true);
+chassis.turnToHeading(180, 700, {.minSpeed = 100}, false);
+Doinker.set_value(false);
+}
+void RedPos1(){
+}
+void RedNeg1(){
+}
+void RedNeg2(){
 }
 
 void RedSigSAWP(){

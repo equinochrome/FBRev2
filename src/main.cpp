@@ -31,7 +31,7 @@ stormlib::aRGB_manager LEDmanager(&strand1, nullptr, nullptr, nullptr,
 {"BlueNeg4_1", &BlueNeg4Ring},
 {"BlueSoloAWP", &BluePos2},
 {"}BlueMidRush1", &BlueMidRush1},
-{"BlueNeg1", &BlueNeg1},
+{"BlueSoloAWAPPush", &BlueSoloAWAPPush},
 {"RedPos1", &RedPos1},
 {"RedNeg1", &RedNeg1},
 {"RedNeg2", &RedNeg2},
@@ -81,7 +81,7 @@ void autonomous() {
         //console.println("Erm what the sigma");
         LB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 	        //selector.run_auton();
-BlueMidRushPOSCORNER();
+BlueSoloAWAPPush();
     // REMOVE BEFORE COMPETITION    
 //skills();
 }
