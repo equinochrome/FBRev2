@@ -29,15 +29,14 @@ stormlib::aRGB_manager LEDmanager(&strand1, nullptr, nullptr, nullptr,
     {"test", &test},
    {"test2", &test2},
 {"BlueNeg4_1", &BlueNeg4Ring},
-{"BluePos2", &BluePos2},
-{"}BlueSoloAwp", &BlueSoloAwp},
+{"BlueSoloAWP", &BluePos2},
+{"}BlueMidRush1", &BlueMidRush1},
 {"BlueNeg1", &BlueNeg1},
 {"RedPos1", &RedPos1},
 {"RedNeg1", &RedNeg1},
 {"RedNeg2", &RedNeg2},
-{"}RedSoloAwp", &RedSoloAwp},
-{"BlueSigSAwp", &BlueSigSAwp},
-{"BlueSigSAwp2", &BlueSigSAwp2},
+{"BlueMidRushExtropy", &BlueMidRushExtropy},
+{"BlueMidRushPOSCORNER", &BlueMidRushPOSCORNER},
 {"RedSigSAWP", &RedSigSAWP},
 {"RedSigSAWP2", &RedSigSAWP2},
 {"skills", &skills},
@@ -48,33 +47,10 @@ stormlib::aRGB_manager LEDmanager(&strand1, nullptr, nullptr, nullptr,
 });
 ASSET(mogopath_txt);
 
-const int numStates = 3;
-//make sure these are in centidegrees (1 degree = 100 centidegrees)
-int states[numStates] = {0, 3700, 14000};
-int currState = 0;
-int target = 0;
 
-void nextState() {
-    currState += 1;
-    if (currState == numStates) {
-        currState = 0;
-    }
-    target = states[currState];
-}
 
-void liftControl() {
-    double kp = .015;
-    double error = target - rotationSensor3.get_position();
-    double velocity = kp * error;
-    LB.move(velocity);
-}
 
-void BlueColorSort(){
-    BlueTeam = true;
- if (color.get_hue() >= 209 && color_dist.get() < 55) {
-        Hook.move(0);
-    }
-}
+
 
 
 
@@ -88,12 +64,7 @@ chassis.calibrate();
             pros::delay(10);
         }
     });
-    pros::Task BlueColorSortTask([]{
-        while (true) {
-            BlueColorSort();
-            pros::delay(10);
-        }
-    });
+    
 }
 
 
@@ -104,11 +75,15 @@ void competition_initialize() {}
 
 
 void autonomous() {
+    
     LB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
     pros::delay(100);
-        console.println("Erm what the sigma");
+        //console.println("Erm what the sigma");
         LB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-	        selector.run_auton();
+	        //selector.run_auton();
+BlueMidRushPOSCORNER();
+    // REMOVE BEFORE COMPETITION    
+//skills();
 }
 
 
@@ -119,7 +94,7 @@ void autonomous() {
 void opcontrol() {   
 bool MogoState = false;
 LB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-
+IntakePiston.set_value(false);
 
 
     // loop forever

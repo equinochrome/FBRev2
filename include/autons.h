@@ -1,6 +1,4 @@
 #pragma once
-#include "main.h"
-
 // Autons
  void test();
 
@@ -20,22 +18,23 @@ void RedNeg2();
 
 void skills();
 
-void BlueSoloAwp();
+void BlueMidRush1();
 
-void RedSoloAwp();
 
-void BlueSigSAwp();
+void BlueMidRushExtropy();
 
 void RedSigSAWP();
 
 void red4ring();
 
-void BlueSigSAwp2();
+void BlueMidRushPOSCORNER();
 
 void RedSigSAWP2();
 
 void blue4ring();
 // Other stuff
 
+void liftControl();
 
+void nextState();
 

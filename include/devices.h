@@ -44,6 +44,7 @@ static pros::Rotation rotation_sensor2(19);
 static pros::Rotation rotationSensor3(-3);
 // create a distance sensor for lb distance
 static pros::Distance color_dist(7);
+static pros::adi::DigitalIn limit('A');
 
 
 // replace 1 with the port the rotation sensor is connected to
@@ -53,7 +54,7 @@ static pros::Rotation horiz_sensor(-19);
 // vertical tracking wheel
 static lemlib::TrackingWheel vertical_tracking_wheel(&vertical_sensor, lemlib::Omniwheel::NEW_2, 0.176743);
 //horizontal tracker
-static lemlib::TrackingWheel horiz_tracker(&horiz_sensor, lemlib::Omniwheel::NEW_2, -3.25);
+static lemlib::TrackingWheel horiz_tracker(&horiz_sensor, lemlib::Omniwheel::NEW_2, -2.875);
 
 static lemlib::OdomSensors sensors(
                             &vertical_tracking_wheel, // vertical tracking wheel 1, set to null
