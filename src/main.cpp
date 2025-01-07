@@ -81,9 +81,8 @@ void autonomous() {
         //console.println("Erm what the sigma");
         LB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 	        //selector.run_auton();
-BlueSoloAWAPPush();
     // REMOVE BEFORE COMPETITION    
-//skills();
+skills();
 }
 
 

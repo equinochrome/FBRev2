@@ -171,7 +171,7 @@ pros::delay(300);
 chassis.moveToPoint(48, 0, 1000, {} , false);
 Hook.move(0);
 chassis.turnToHeading(180, 700);
-chassis.moveToPoint(48, 24, 1000, {.forwards = false, .maxSpeed = 50}, false);
+chassis.moveToPoint(50, 24, 1000, {.forwards = false, .maxSpeed = 50}, false);
 Mogo.set_value(true);
 pros::delay(100);
 // score first ring
@@ -197,12 +197,14 @@ chassis.turnToPoint(58, 51, 700, {}, false);
 Hook.move(-127);
 chassis.moveToPoint(36, 51, 750);
 chassis.moveToPoint(60, 51, 3000, {.maxSpeed=70});
+pros::delay(200);
 // score sixth ring
-chassis.turnToPoint(52, 60, 700);
-chassis.moveToPoint(52, 60, 1000);
+chassis.turnToPoint(48, 60, 700);
+chassis.moveToPoint(48, 60, 1000);
+pros::delay(200);
 // drop mobile goal into corner
-chassis.turnToPoint(59, 63, 700, {.forwards = false});
-chassis.moveToPoint(58.5, 63, 1000, {. forwards=false}, false);
+chassis.turnToPoint(59, 61, 700, {.forwards = false});
+chassis.moveToPoint(58.5, 61, 1000, {. forwards=false}, false);
 Mogo.set_value(false);
 pros::delay(50);
 Hook.move(127);
@@ -218,21 +220,21 @@ pros::delay(100);
 // score first ring
 chassis.turnToHeading(270, 700, {}, false);
 Hook.move(-127);
-chassis.moveToPoint(30, -25, 1000);
+chassis.moveToPoint(28, -26, 1000);
 // primie wall stake and load with ring
 chassis.turnToPoint(-24, -52, 700, {}, false);
 target=3700;
 chassis.moveToPoint(-24, -52, 1250);
 // score ring on neutral wall stake and score second ring on mobile goal
-chassis.turnToPoint(0, -44, 700, {.forwards = false}, false);
-chassis.moveToPoint(0, -44, 1000, {.forwards = false}, false);
+chassis.turnToPoint(1, -44, 700, {.forwards = false}, false);
+chassis.moveToPoint(1, -44, 1000, {.forwards = false}, false);
 chassis.turnToHeading(180, 700);
-chassis.moveToPoint(0, -66, 700, {}, false);
+chassis.moveToPoint(1, -66, 700, {}, false);
 Hook.move_relative(75, 127);
 target=16100;
 pros::delay(500);
 // score third through fifth rings
-chassis.moveToPoint(0, -50, 1000, {.forwards = false}, false);
+chassis.moveToPoint(1, -50, 1000, {.forwards = false}, false);
 chassis.turnToPoint(58, -50, 700, {}, false);
 Hook.move(-127);
 chassis.moveToPoint(36, -50, 750);
