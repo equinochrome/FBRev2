@@ -12,6 +12,7 @@ int states[numStates] = {50, 3700, 16100};
 int currState = 0;
 int target = 0;
 
+
 void nextState() {
     currState += 1;
     if (currState == numStates) {
@@ -151,8 +152,6 @@ chassis.moveToPoint(8, -12, 3000, {.forwards = false}, false);
 
 }
 
-
-
 void skills(){
 
 // 9123C SKILLS ROUTINE
@@ -210,11 +209,11 @@ pros::delay(50);
 Hook.move(127);
 target=100;
 // grab second mobile goal
-chassis.moveToPoint(50, 60, 1000);
+chassis.moveToPoint(51, 60, 1000);
 chassis.turnToHeading(0, 700, {}, false);
-chassis.moveToPoint(50, 0, 1000, {.forwards = false}, false);
+chassis.moveToPoint(51, 0, 1000, {.forwards = false}, false);
 Hook.move(0);
-chassis.moveToPoint(50, -26, 1500, {.forwards = false, .maxSpeed = 50}, false);
+chassis.moveToPoint(51, -26, 1500, {.forwards = false, .maxSpeed = 50}, false);
 Mogo.set_value(true);
 pros::delay(100);
 // score first ring
@@ -286,6 +285,7 @@ Hook.move(-127);
 chassis.turnToHeading(75, 700);
 chassis.moveToPoint(24, -48, 1000, {}, false);
 chassis.moveToPoint(24, -14, 1000);
+// 4 ring stacks disrupt
 Doinker.set_value(true);
 chassis.turnToHeading(55, 700, {.maxSpeed = 70});
 
@@ -402,30 +402,42 @@ chassis.setBrakeMode(pros::E_MOTOR_BRAKE_HOLD);
 LB.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
 BlueTeam = true;
 chassis.setPose(60,12, 180);
+target = 400;
 
 // score preload
 target = 16100;
 chassis.swingToHeading(138, lemlib::DriveSide::LEFT, 700, {}, false);
 target=0;
+pros::delay(200);
 // Turn to alliance bot
-chassis.moveToPoint(60, 24, 700);
-chassis.turnToHeading(0, 500, {lemlib::AngularDirection::CW_CLOCKWISE});
+chassis.moveToPoint(60, 24, 1000);
+chassis.turnToHeading(0, 700, {lemlib::AngularDirection::CW_CLOCKWISE});
 chassis.moveToPoint(60, 45 , 700);
 Intake.move(80);
-chassis.moveToPoint(55, 20, 1000, {.forwards = false});
+chassis.moveToPoint(55, 16, 1000, {.forwards = false}, false);
+target = 16100;
 //Turn to goal
-chassis.turnToPoint(24, 28, 800, { .forwards = false});
-chassis.moveToPoint(24, 28, 2000, { .forwards = false, .maxSpeed = 50}, false);
+chassis.turnToPoint(22, 27, 800, { .forwards = false});
+chassis.moveToPoint(22, 27, 2000, { .forwards = false, .maxSpeed = 50}, false);
 //Grab and turn to ring
 Mogo.set_value(true);
 pros::delay(100);
-chassis.turnToPoint(16, 55, 1000);
+chassis.turnToPoint(16, 55, 1000, {}, false);
 Hook.move(-127);
 Intake.move(127);
-chassis.moveToPoint(16, 55, 1000);
-Doinker.set_value(true);
-chassis.turnToHeading(180, 700, {.minSpeed = 100}, false);
-Doinker.set_value(false);
+chassis.moveToPoint(16, 55, 1000, {}, false);
+pros::delay(500);
+chassis.turnToPoint(44, 10, 700, {}, false);
+IntakePiston.set_value(true);
+chassis.moveToPoint(44, 10, 1500, {}, false);
+IntakePiston.set_value(false);
+chassis.moveToPoint(16, 24, 4000, {.forwards=false, .minSpeed=70});
+chassis.turnToHeading(0, 700);
+target = 6000;
+chassis.moveToPoint(12, 18, 700, {.forwards=false});
+
+
+
 }
 void RedPos1(){
 }

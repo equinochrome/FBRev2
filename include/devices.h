@@ -23,6 +23,7 @@ static pros::adi::DigitalOut IntakePiston('C');
 static pros::adi::DigitalOut Doinker('D'); 
 static pros::adi::DigitalOut Mogo('E'); 
 static pros::Optical color(4);
+static pros::Distance rightDistance(2);
 
 // drivetrain settings
 static lemlib::Drivetrain drivetrain(&left_motors, // left motor group

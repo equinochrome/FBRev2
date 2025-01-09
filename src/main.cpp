@@ -56,8 +56,9 @@ ASSET(mogopath_txt);
 
 
 void initialize() {
-//rotation_sensor3.reset_position();
+rotationSensor3.set_position(-50);
 chassis.calibrate();
+
     pros::Task liftControlTask([]{
         while (true) {
             liftControl();
@@ -82,7 +83,7 @@ void autonomous() {
         LB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 	        //selector.run_auton();
     // REMOVE BEFORE COMPETITION    
-skills();
+BlueSoloAWAPPush();
 }
 
 
