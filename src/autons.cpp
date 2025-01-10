@@ -439,11 +439,61 @@ chassis.moveToPoint(12, 18, 700, {.forwards=false});
 
 
 }
-void RedPos1(){
+void RedMidRush1(){
+
 }
-void RedNeg1(){
+void RedMidRushExtropy(){
+    //RED MID RUSH EXTROPY
+// set up
+RedTeam = true;
+BlueTeam=false;
+chassis.setBrakeMode(pros::E_MOTOR_BRAKE_HOLD);
+LB.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+chassis.setPose(-51.25,-37, 90);
+//Grab mid mogo
+chassis.moveToPoint(-20.3, -36, 1500, {.minSpeed = 127});
+pros::delay(700);
+chassis.turnToHeading(-140 , 750);
+pros::delay(140);
+Doinker.set_value(true);
+pros::delay(500);
+Doinker.set_value(false);
+//Get 2nd mogo
+chassis.turnToPoint(-21, -12, 700, {.forwards = false, .minSpeed = 100});
+chassis.moveToPoint(-18, -16, 2000, {.forwards = false, .maxSpeed= 90}, false);
+Mogo.set_value(true);
+pros::delay(50);
+//Go Stack and get ring
+chassis.turnToPoint(-41, -1, 900, {}, false);
+Hook.move(-127);
+Intake.move(127);
+chassis.moveToPoint(-41, -1, 1000);
+IntakePiston.set_value(true);
+pros::delay(100);
+//Corner
+chassis.turnToPoint(-55, -48, 700, {.forwards=false}, false);
+IntakePiston.set_value(false);
+chassis.moveToPoint(-55, -48, 1000, {.forwards=false}, false);
+pros::delay(200);
+Mogo.set_value(false);
+//Grab Other mogo
+Intake.move(-127);
+Hook.move(0);
+chassis.turnToPoint(-8, -25.5, 700, {});
+chassis.moveToPoint(-8, -25.5, 1200, {});
+chassis.turnToPoint(-5, -63, 700, {.forwards=false}); 
+chassis.moveToPoint(-5, -63, 1500, {.forwards=false, .maxSpeed = 60}, false   );
+Mogo.set_value(true); 
+pros::delay(50);
+//Stack
+Hook.move(-127);
+Intake.move(127);
+chassis.turnToHeading(-75, 700);
+chassis.moveToPoint(-24, -48, 1000, {}, false);
+chassis.moveToPoint(-10, -60, 1000, {.forwards = false});
+
 }
-void RedNeg2(){
+void RedMidRushPOSCORNER(){
 }
 
 void RedSigSAWP(){

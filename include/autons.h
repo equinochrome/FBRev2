@@ -10,11 +10,11 @@ void BluePos2();
 
 void BlueSoloAWAPPush();
 
-void RedPos1();
+void RedMidRush1();
 
-void RedNeg1();
+void RedMidRushExtropy();
 
-void RedNeg2();
+void RedMidRushPOSCORNER();
 
 void skills();
 
