@@ -37,11 +37,11 @@ stormlib::aRGB_manager LEDmanager(&strand1, nullptr, nullptr, nullptr,
 {"RedMidRushPOSCORNER", &RedMidRushPOSCORNER},
 {"BlueMidRushExtropy", &BlueMidRushExtropy},
 {"BlueMidRushPOSCORNER", &BlueMidRushPOSCORNER},
-{"RedSigSAWP", &RedSigSAWP},
-{"RedSigSAWP2", &RedSigSAWP2},
+{"RedSoloAWP", &RedSoloAWP},
+{"RedAWPPush", &RedSoloAWPPush},
 {"skills", &skills},
-{"red4ring", &red4ring},
-{"blue4ring", &blue4ring}
+{"RedeNeg4_1", &RedNeg4_1},
+
 
 
 });
@@ -56,7 +56,8 @@ ASSET(mogopath_txt);
 
 
 void initialize() {
-rotationSensor3.set_position(-50);
+//rotationSensor3.set_position(-50);
+rotationSensor3.reset_position();
 chassis.calibrate();
 
     pros::Task liftControlTask([]{
@@ -83,7 +84,7 @@ void autonomous() {
         LB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 	        //selector.run_auton();
     // REMOVE BEFORE COMPETITION    
-RedMidRushExtropy();
+RedMidRushPOSCORNER();
 }
 
 
@@ -118,20 +119,21 @@ IntakePiston.set_value(false);
 
 
         if(controller.get_digital(DIGITAL_R2)){
-        color .set_led_pwm(100);
-         Hook.move(-127);
-         Intake.move(127);
-        }
-        else if(controller.get_digital(DIGITAL_X)){
-            color .set_led_pwm(0);
-            Hook.move(127);
-            Intake.move(-127);
-
-        } else{
-            color .set_led_pwm(0);
-            Hook.move(0);
-            Intake.move(0);
-        }
+    color.set_led_pwm(100);
+    Hook.move(-127);
+    Intake.move(127);
+        } else if(controller.get_digital(DIGITAL_X)){
+    color.set_led_pwm(0);
+    Hook.move(127);
+    Intake.move(-127);
+        } else if(controller.get_digital(DIGITAL_L1)){
+    color.set_led_pwm(0);
+    Intake.move(127);
+        } else {
+    color.set_led_pwm(0);
+    Hook.move(0);
+    Intake.move(0);
+}
 
 	
 
@@ -143,14 +145,15 @@ IntakePiston.set_value(false);
             Doinker.set_value(false);
         }
 
-    if (controller.get_digital(DIGITAL_A)){
-        Mogo.set_value(true);
-        } else if(controller.get_digital(DIGITAL_B)){
+    if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L2)){
         Mogo.set_value(false);
-        }
+        } else 
+        Mogo.set_value(true);
+        
+   
 
         // delay to save resources
-        pros::delay(25);
+pros::delay(25);
 
     }
 }

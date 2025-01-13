@@ -23,15 +23,14 @@ void BlueMidRush1();
 
 void BlueMidRushExtropy();
 
-void RedSigSAWP();
+void RedNeg4_1();
 
-void red4ring();
+void RedSoloAWPPush();
 
 void BlueMidRushPOSCORNER();
 
-void RedSigSAWP2();
+void RedSoloAWP();
 
-void blue4ring();
 // Other stuff
 
 void liftControl();
