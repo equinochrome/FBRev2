@@ -602,12 +602,119 @@ chassis.moveToPoint(-48, -50, 1000);
 
 void RedNeg4_1(){
 //Red Neg 4_1
+
+// set up
+chassis.setBrakeMode(pros::E_MOTOR_BRAKE_HOLD);
+LB.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+BlueTeam = true;
+chassis.setPose(-60,12, -180);
+
+// score preload
+target = 16100;
+chassis.swingToHeading(-138, lemlib::DriveSide::RIGHT, 700, {}, false);
+target=0;
+//grab mogo
+chassis.turnToPoint(-24, 23, 700, { .forwards = false}, false);
+chassis.moveToPoint(-24, 23, 99999, { .forwards = false, .maxSpeed = 50}, false);
+Mogo.set_value(true);
+pros::delay(200);
+// score 2 rings from middle 4 ring stacks
+chassis.turnToHeading(-325, 700);
+Hook.move(-127);
+Intake.move(127);
+chassis.moveToPose(-7, 64, -0, 2000, {.minSpeed = 40, .earlyExitRange = 1});
+chassis.moveToPose(-7, 69, -0, 1000, {.minSpeed = 30});
+//score ring from single 2 ring stack
+chassis.moveToPose(-26, 26, -330, 1500, {.forwards = false, .lead = .4, .minSpeed=70});
+pros::delay(100);
+chassis.moveToPoint(-30, 47, 1000, {}, false);
+pros::delay(400);
+// score ring from 2 ring stack near alliance stake; ring on top of the stack. begin lb ladder touch
+IntakePiston.set_value(true);
+LB.move_relative(1200, 127);
+chassis.moveToPose(-48, 6, -180, 3000, {.lead = .4, .minSpeed = 70}, false);
+IntakePiston.set_value(false);
+target=6000;
+
+// touch ladder
+chassis.moveToPose(-14, 12, -45, 4000, {.forwards = false, .lead = .4, .minSpeed=70}, false);
+
 }
 
 void RedSoloAWP(){
     //Red Solo AWP
+
+// set up
+chassis.setBrakeMode(pros::E_MOTOR_BRAKE_HOLD);
+LB.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+BlueTeam = true;
+chassis.setPose(-60,12, 180);
+
+// score preload
+target = 16100;
+chassis.swingToHeading(-138, lemlib::DriveSide::RIGHT, 700, {}, false);
+target=0;
+//grab mogo
+chassis.turnToPoint(-22, 24, 700, { .forwards = false}, false);
+chassis.moveToPoint(-22, 24, 500, { .forwards = false}, false);
+chassis.moveToPoint(-22, 24, 2000, { .forwards = false, .maxSpeed = 50}, false);
+Mogo.set_value(true);
+pros::delay(200);
+// score 2 rings from middle 4 ring stacks
+chassis.turnToHeading(-325, 700);
+Hook.move(-127);
+Intake.move(127);
+chassis.moveToPose(-7, 64, -0, 2000, {.minSpeed = 40, .earlyExitRange = 1});
+chassis.moveToPose(-7, 67, -0, 1000, {.minSpeed = 30});
+//score ring from single 2 ring stack
+chassis.moveToPose(-28, 27, -330, 1500, {.forwards = false, .lead = .4, .minSpeed=65});
+pros::delay(100);
+chassis.moveToPoint(-28, 50, 1000, {}, false);
+// score ring from 2 ring stack near alliance stake; ring on top of the stack
+pros::delay(300);
+IntakePiston.set_value(true);
+LB.move_relative(1350, 127);
+chassis.moveToPose(-50, 0, -180, 3000, {.lead = .4, .minSpeed = 80}, false);
+Mogo.set_value(false);
+Hook.move(127);
+chassis.moveToPoint(-48, -6, 2000, {.maxSpeed = 60}, false);
+IntakePiston.set_value(false);
+chassis.turnToPoint(-20, -24, 700, { .forwards = false, .minSpeed = 60, .earlyExitRange = 3}, false);
+//Hook.move(0);
+//Intake.move(0);
+chassis.moveToPoint(-20, -24.5, 2000, { .forwards = false, .maxSpeed = 50}, false);
+Mogo.set_value(true);
+pros::delay(100);
+Hook.move(-127);
+Intake.move(127);
+//chassis.turnToPoint(24, -48, 700);
+target=6000;
+chassis.moveToPose(-24, -50, -180, 2000, {.lead = .4, .minSpeed = 80}, false);
+chassis.moveToPoint(-12, -16, 3000, {.forwards = false}, false);
+
 }
 void RedSoloAWPPush(){
  //RedSoloAWAPPush
+
+// set up
+chassis.setBrakeMode(pros::E_MOTOR_BRAKE_HOLD);
+LB.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+BlueTeam = true;
+chassis.setPose(-60,12, 180);
+target = 400;
+
+// score preload
+target = 16100;
+chassis.swingToHeading(-138, lemlib::DriveSide::RIGHT, 700, {}, false);
+target=0;
+pros::delay(200);
+// Turn to alliance bot
+chassis.moveToPoint(-60, 24, 1000);
+chassis.turnToHeading(-0, 700, {});
+chassis.moveToPoint(-60, 45 , 700);
+Intake.move(80);
+chassis.moveToPoint(-55, 16, 1000, {.forwards = false}, false);
+target = 16100;
+
 }
 
