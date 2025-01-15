@@ -31,6 +31,8 @@ void BlueMidRushPOSCORNER();
 
 void RedSoloAWP();
 
+void RedNeg6_1();
+
 // Other stuff
 
 void liftControl();

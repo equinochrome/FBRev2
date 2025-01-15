@@ -41,6 +41,7 @@ stormlib::aRGB_manager LEDmanager(&strand1, nullptr, nullptr, nullptr,
 {"RedAWPPush", &RedSoloAWPPush},
 {"skills", &skills},
 {"RedeNeg4_1", &RedNeg4_1},
+{"RedNeg6_1", &RedNeg6_1},
 
 
 
@@ -84,7 +85,7 @@ void autonomous() {
         LB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 	        //selector.run_auton();
     // REMOVE BEFORE COMPETITION    
-RedSoloAWPPush();
+RedNeg6_1();
 }
 
 
