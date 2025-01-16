@@ -85,7 +85,7 @@ void autonomous() {
         LB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 	        //selector.run_auton();
     // REMOVE BEFORE COMPETITION    
-RedNeg6_1();
+skills();
 }
 
 
