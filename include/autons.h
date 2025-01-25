@@ -39,3 +39,5 @@ void liftControl();
 
 void nextState();
 
+void ColorSort();
+

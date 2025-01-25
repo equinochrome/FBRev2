@@ -9,21 +9,27 @@
 #include "pros/optical.hpp" 
 #include "pros/rotation.hpp"
 
+static const int numStates = 3;
+//make sure these are in centidegrees (1 degree = 100 centidegrees)
+static int states[numStates] = {50, 3800, 16100};
+static int currState = 0;
+static int target = 0;
+
 // Controller
 static pros::Controller controller(pros::E_CONTROLLER_MASTER);
 
-static pros::MotorGroup left_motors(	{-16,-11,13}, pros::MotorGearset::blue);
+static pros::MotorGroup left_motors(	{-16,-11,14}, pros::MotorGearset::blue);
 static pros::MotorGroup right_motors({12,20,-15}, pros::MotorGearset::blue);
 
 static pros::Motor Hook(-10, pros::MotorGearset::blue);
-static pros::Motor Intake(-18, pros::MotorGearset::blue);
-static pros::Motor LB (-17, pros::MotorGearset::green);
+static pros::Motor Intake(-2, pros::MotorGearset::blue);
+static pros::Motor LB (-13, pros::MotorGearset::green);
 
 static pros::adi::DigitalOut IntakePiston('C');
 static pros::adi::DigitalOut Doinker('D'); 
 static pros::adi::DigitalOut Mogo('E'); 
-static pros::Optical color(4);
-static pros::Distance rightDistance(2);
+static pros::Optical color(18);
+static pros::Distance rightDistance(9);
 
 // drivetrain settings
 static lemlib::Drivetrain drivetrain(&left_motors, // left motor group
@@ -36,7 +42,7 @@ static lemlib::Drivetrain drivetrain(&left_motors, // left motor group
 
 
 // create an imu on port 1
-static pros::Imu imu(14);
+static pros::Imu imu(4);
 
 
 // create a v5 rotation sensor on port 7
