@@ -133,7 +133,7 @@ IntakePiston.set_value(false);
 chassis.turnToPoint(20, -24, 700, { .forwards = false, .minSpeed = 60, .earlyExitRange = 3}, false);
 //Hook.move(0);
 //Intake.move(0);
-chassis.moveToPoint(20, -24.5, 2000, { .forwards = false, .maxSpeed = 50}, false);
+chassis.moveToPoint(20, -27, 2000, { .forwards = false, .maxSpeed = 50}, false);
 Mogo.set_value(true);
 pros::delay(100);
 Hook.move(-127);
@@ -141,7 +141,7 @@ Intake.move(127);
 //chassis.turnToPoint(24, -48, 700);
 target=6000;
 chassis.moveToPose(24, -50, 180, 2000, {.lead = .4, .minSpeed = 80}, false);
-chassis.moveToPoint(12, -16, 3000, {.forwards = false}, false);
+chassis.moveToPoint(12, -24, 3000, {.forwards = false}, false);
 
 
 
@@ -176,7 +176,7 @@ Intake.move(127);
 chassis.moveToPoint(28, 26, 1000);
 // place ring in wall stake mechanism
 chassis.turnToPoint(-24, 48, 700, {}, false);
-target=3800;
+target=3700;
 chassis.moveToPoint(-24, 48, 1250);
 // score wall stake and intake second ring to mobile goal
 chassis.turnToPoint(-3, 44, 700, {.forwards = false}, false);
@@ -291,6 +291,11 @@ chassis.moveToPoint(-62, 69, 1000);
 chassis.turnToHeading(135, 1500, {.minSpeed=80}, false);
 chassis.moveToPoint(-68, 70, 500,{.forwards=false}, false);
 Mogo.set_value(false);
+pros::delay(500);
+chassis.moveToPoint(-27, 27, 1000, {}, false);
+target=16100;
+chassis.turnToPoint(0, 0, 700, {.forwards=false});
+chassis.moveToPoint(0, 0, 9999, {.forwards=false});
 
 }
 
@@ -515,8 +520,8 @@ chassis.turnToHeading(90, 500, {}, false);
 Doinker.set_value(false);
 pros::delay(100);
 chassis.moveToPoint(-22, -42.15599, 700);
-chassis.turnToPoint(-22, -24, 700, {.forwards=false});
-chassis.moveToPoint(-22, -24, 1000, {.forwards=false, .maxSpeed=70}, false);
+chassis.turnToPoint(-22, -22, 700, {.forwards=false});
+chassis.moveToPoint(-23, -22, 1000, {.forwards=false, .maxSpeed=60}, false);
 Mogo.set_value(true);
 pros::delay(100);
 Hook.move(-127);
@@ -533,19 +538,19 @@ chassis.moveToPoint(-58, -38, 1000);
 chassis.swingToHeading(241, lemlib::DriveSide::RIGHT, 700, {}, false);
 chassis.moveToPoint(-61, -55, 700, {}, false);
 Hook.move(0);
+chassis.turnToPoint(-20, -22, 1000, {.direction = lemlib::AngularDirection::CW_CLOCKWISE, .minSpeed=80});
+pros::delay(200);
 Mogo.set_value(false);
-chassis.turnToPoint(-24, -24, 1000, {.direction = lemlib::AngularDirection::CW_CLOCKWISE, .minSpeed=80}, false);
 Intake.move(0);
 chassis.moveToPoint(-24, -24, 1000, {}, false);
-chassis.turnToPoint(-9, -40, 700, {.forwards=false});
-chassis.moveToPoint(-8, -44, 1000, {.forwards=false}, false);
+chassis.turnToPoint(-10, -40, 700, {.forwards=false});
+chassis.moveToPoint(-10, -44, 1000, {.forwards=false}, false);
 Mogo.set_value(true);
 pros::delay(100);
-Hook.move(-127);
 //Doinker.set_value(true);
-target = 16100;
-chassis.moveToPoint(-5, -29, 700);
-chassis.turnToHeading(45, 1500);
+//target = 16100;
+//chassis.moveToPoint(-5, -29, 700);
+//chassis.turnToHeading(45, 1500);
 //chassis.swingToHeading(20, lemlib::DriveSide::RIGHT, 2000);
 }
 
@@ -736,7 +741,7 @@ chassis.moveToPoint(-27, 50, 1000, {}, false);
 pros::delay(300);
 IntakePiston.set_value(true);
 LB.move_relative(1350, 127);
-chassis.moveToPose(-50, 0, -180, 3000, {.lead = .4, .minSpeed = 80}, false);
+chassis.moveToPose(-48, 0, -180, 3000, {.lead = .4, .minSpeed = 80}, false);
 Mogo.set_value(false);
 Hook.move(127);
 chassis.moveToPoint(-48, -6, 2000, {.maxSpeed = 60}, false);
@@ -834,5 +839,32 @@ chassis.turnToHeading(-270, 700);
 chassis.moveToPose(-55, 50, -270, 2000, {.forwards = false, .minSpeed = 85}, false);
 chassis.swingToHeading(-12, lemlib::DriveSide::RIGHT, 700, {}, false);
 Doinker.set_value(true);
+
+}
+
+void BluePosQuals(){
+
+// set up
+chassis.setBrakeMode(pros::E_MOTOR_BRAKE_HOLD);
+LB.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+BlueTeam = true;
+chassis.setPose(60,-12, 0);
+Mogo.set_value(false);
+
+// score preload
+Intake.move(-127);
+target = 16100;
+chassis.swingToHeading(42, lemlib::DriveSide::RIGHT, 700, {}, false);
+target = 0;
+pros::delay(300);
+IntakePiston.set_value(true);
+chassis.turnToPoint(48, 0, 700, {}, false);
+Intake.move(127);
+chassis.moveToPoint(52, -4, 700, {}, false);
+IntakePiston.set_value(false);
+chassis.turnToPoint(24, -24, 700, {.forwards = false}, false);
+chassis.moveToPoint(24, -24, 300, {.forwards = false}, false);
+chassis.moveToPoint(24, -24, 1000, {.forwards = false, .maxSpeed=55}, false);
+Mogo.set_value(true);
 
 }

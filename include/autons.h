@@ -33,6 +33,8 @@ void RedSoloAWP();
 
 void RedNeg6_1();
 
+void BluePosQuals();
+
 // Other stuff
 
 void liftControl();

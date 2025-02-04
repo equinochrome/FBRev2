@@ -11,7 +11,7 @@
 
 static const int numStates = 3;
 //make sure these are in centidegrees (1 degree = 100 centidegrees)
-static int states[numStates] = {50, 3800, 16100};
+static int states[numStates] = {50, 3700, 16100};
 static int currState = 0;
 static int target = 0;
 

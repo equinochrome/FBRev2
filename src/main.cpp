@@ -26,23 +26,13 @@ stormlib::aRGB_manager LEDmanager(&strand1, nullptr, nullptr, nullptr,
  using rd::Console;
    Console console;
 
-  rd::Selector selector({
-    {"test", &test},
-   {"test2", &test2},
-{"BlueNeg4_1", &BlueNeg4Ring},
-{"BlueSoloAWP", &BluePos2},
-{"}BlueMidRush1", &BlueMidRush1},
-{"BlueSoloAWAPPush", &BlueSoloAWAPPush},
-{"RedMidRush1", &RedMidRush1},
-{"RedMidRushExtropy", &RedMidRushExtropy},
-{"RedMidRushPOSCORNER", &RedMidRushPOSCORNER},
-{"BlueMidRushExtropy", &BlueMidRushExtropy},
-{"BlueMidRushPOSCORNER", &BlueMidRushPOSCORNER},
-{"RedSoloAWP", &RedSoloAWP},
-{"RedAWPPush", &RedSoloAWPPush},
-{"skills", &skills},
-{"RedeNeg4_1", &RedNeg4_1},
-{"RedNeg6_1", &RedNeg6_1},
+rd::Selector selector({
+{"BlueNegQuals", &BlueNeg4Ring},
+{"RedNegQuals", &RedNeg4_1},
+
+
+
+{"test", &test},
 
 
 
@@ -61,19 +51,7 @@ void initialize() {
 //rotationSensor3.set_position(-50);
 rotationSensor3.reset_position();
 chassis.calibrate();
-pros::lcd::initialize();
- pros::Task screenTask([&]() {
-        while (true) {
-            // print robot location to the brain screen
-            pros::lcd::print(0, "X: %f", chassis.getPose().x); // x
-            pros::lcd::print(1, "Y: %f", chassis.getPose().y); // y
-            pros::lcd::print(2, "Theta: %f", chassis.getPose().theta); // heading
-            // log position telemetry
-            lemlib::telemetrySink()->info("Chassis pose: {}", chassis.getPose());
-            // delay to save resources
-            pros::delay(50);
-        }
-    });
+
 
 
     pros::Task liftControlTask([]{
@@ -98,9 +76,9 @@ void autonomous() {
     pros::delay(100);
         //console.println("Erm what the sigma");
         LB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-	        //selector.run_auton();
+	        selector.run_auton();
     // REMOVE BEFORE COMPETITION    
-    skills();
+    BluePos2();
 }
 
 
@@ -114,6 +92,13 @@ LB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 IntakePiston.set_value(false);
 Doinker.set_value(false);
 target=50;
+
+if(controller.get_digital(DIGITAL_Y)){
+    nextState();
+    nextState();
+    pros::delay(500);
+    nextState();
+}
 
     // loop forever
     while (true) {
@@ -155,7 +140,7 @@ target=50;
 
 
         
-        if(controller.get_digital(DIGITAL_LEFT)){
+        if(controller.get_digital(DIGITAL_DOWN)){
             Doinker.set_value(true);
         } else if(controller.get_digital(DIGITAL_RIGHT)){
             Doinker.set_value(false);
