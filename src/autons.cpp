@@ -108,7 +108,7 @@ target=0;
 //grab mogo
 chassis.turnToPoint(22, 24, 700, { .forwards = false}, false);
 chassis.moveToPoint(22, 24, 500, { .forwards = false}, false);
-chassis.moveToPoint(22, 24, 2000, { .forwards = false, .maxSpeed = 50}, false);
+chassis.moveToPoint(22, 24.5, 2000, { .forwards = false, .maxSpeed = 50}, false);
 Mogo.set_value(true);
 pros::delay(200);
 // score 2 rings from middle 4 ring stacks
@@ -116,7 +116,7 @@ chassis.turnToHeading(325, 700);
 Hook.move(-127);
 Intake.move(127);
 chassis.moveToPose(7, 64, 0, 2000, {.minSpeed = 40, .earlyExitRange = 1});
-chassis.moveToPose(7, 67, 0, 1000, {.minSpeed = 30});
+chassis.moveToPose(7, 66, 0, 1000, {.minSpeed = 30});
 //score ring from single 2 ring stack
 chassis.moveToPose(28, 27, 330, 1500, {.forwards = false, .lead = .4, .minSpeed=65});
 pros::delay(100);
@@ -141,7 +141,7 @@ Intake.move(127);
 //chassis.turnToPoint(24, -48, 700);
 target=6000;
 chassis.moveToPose(24, -50, 180, 2000, {.lead = .4, .minSpeed = 80}, false);
-chassis.moveToPoint(12, -24, 3000, {.forwards = false}, false);
+chassis.moveToPose(14, -14, 200, 2000, {.forwards=false, .lead = .2, .minSpeed = 90}, false);
 
 
 
@@ -757,7 +757,8 @@ Intake.move(127);
 //chassis.turnToPoint(24, -48, 700);
 target=6000;
 chassis.moveToPose(-24, -50, -180, 2000, {.lead = .4, .minSpeed = 80}, false);
-chassis.moveToPoint(-12, -16, 3000, {.forwards = false}, false);
+chassis.moveToPose(-14, -14, -200, 2000, {.forwards=false, .lead = .2, .minSpeed = 90}, false);
+
 
 }
 void RedSoloAWPPush(){
@@ -866,5 +867,46 @@ chassis.turnToPoint(24, -24, 700, {.forwards = false}, false);
 chassis.moveToPoint(24, -24, 300, {.forwards = false}, false);
 chassis.moveToPoint(24, -24, 1000, {.forwards = false, .maxSpeed=55}, false);
 Mogo.set_value(true);
+
+}
+
+void BlueNegElims(){
+BlueTeam=true;
+// BLUE NEG W/ ALLIANCE STAKE
+
+// set up
+chassis.setBrakeMode(pros::E_MOTOR_BRAKE_HOLD);
+LB.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+BlueTeam = true;
+chassis.setPose(60,12, 180);
+Mogo.set_value(false);
+
+// score preload
+target = 16100;
+chassis.swingToHeading(138, lemlib::DriveSide::LEFT, 700, {}, false);
+target=0;
+//grab mogo
+chassis.turnToPoint(24, 23, 700, { .forwards = false}, false);
+chassis.moveToPoint(24, 28, 99999, { .forwards = false, .maxSpeed = 50}, false);
+Mogo.set_value(true);
+pros::delay(200);
+// score 2 rings from middle 4 ring stacks
+chassis.turnToHeading(325, 700, {}, false);
+Hook.move(-127);
+Intake.move(127);
+chassis.moveToPose(7, 64, 0, 2000, {.minSpeed = 40, .earlyExitRange = 1});
+chassis.moveToPose(7, 65, 0, 1000, {.minSpeed = 30});
+//score ring from single 2 ring stack
+chassis.moveToPose(26, 26, 330, 1500, {.forwards = false, .lead = .4, .minSpeed=70});
+pros::delay(100);
+chassis.moveToPoint(30, 47, 1000, {}, false);
+pros::delay(400);
+//clear corner and intake 2 rings from corner stack
+chassis.moveToPose(60, 65, 45, 1250, {.lead = .2, .minSpeed=85});
+pros::delay(200);
+Doinker.set_value(true);
+chassis.turnToHeading(180, 1000, {.minSpeed=80}, false);
+pros::delay(400);
+//chassis.moveToPoint(48, 30, 1000, {}, false);
 
 }

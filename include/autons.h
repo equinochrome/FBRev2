@@ -35,6 +35,8 @@ void RedNeg6_1();
 
 void BluePosQuals();
 
+void BlueNegElims();
+
 // Other stuff
 
 void liftControl();
