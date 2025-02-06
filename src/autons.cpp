@@ -5,9 +5,30 @@
 #include "robodash/api.h" // IWYU pragma: keep
 #include <cstdio>
 
-    
+int pastVoltage = 0;
 
+void ColorSort(){
+    color.set_led_pwm(100);
+    pastVoltage = Hook.get_voltage();
 
+    if (BlueTeam) {
+        if(color.get_hue() < 25){
+            pros::delay(98);
+            Hook.move(0);
+            pros::delay(300);
+            Hook.move(pastVoltage);
+        }
+    } else
+
+    if (RedTeam) {
+        if(color.get_hue() > 200){
+            pros::delay(105);
+            Hook.move(0);
+            pros::delay(300);
+            Hook.move(pastVoltage);
+        }
+    }
+}
 
 void nextState() {
     currState += 1;
@@ -26,8 +47,12 @@ void liftControl() {
 }
 
 void test(){
-
-void focus();
+    //BlueTeam=false;
+    RedTeam=true;
+    pros::delay(100);
+    Mogo.set_value(true);
+Intake.move(127);
+Hook.move(-127);
 
 
 
@@ -155,6 +180,7 @@ void skills(){
 chassis.setBrakeMode(pros::E_MOTOR_BRAKE_HOLD);
 LB.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
 BlueTeam = false;
+RedTeam = true;
 chassis.setPose(62.75,0, 270);
 target = 300;
 Mogo.set_value(false);
@@ -304,52 +330,13 @@ void BlueMidRush1(){
 //Set up for BLUEMIDRUSH (QUALS)
 chassis.setBrakeMode(pros::E_MOTOR_BRAKE_HOLD);
 BlueTeam = true;
-chassis.setPose(51.25,-37, 270);
+chassis.setPose(49.643,-60.256, 288.13);
 Mogo.set_value(false);
-
+Doinker.set_value(true);
 //Get mid mogo
-chassis.moveToPoint(16, -36, 1500, {.minSpeed = 127}, false);
-pros::delay(50);
-Doinker.set_value(true);
-chassis.moveToPose(14.5, -36, 225, 80, {.minSpeed= 90, .earlyExitRange= 1});
-chassis.turnToHeading(160, 750);
-pros::delay(140);
+chassis.moveToPoint(21, -50.88974, 1000, {.minSpeed = 127}, false);
 Doinker.set_value(false);
-//Get 2nd mogo
-chassis.turnToPoint(25.5, -16.5, 700, {.forwards = false, .minSpeed = 100});
-chassis.moveToPoint(22.5, -16.5, 2000, {.forwards = false, .maxSpeed= 90}, false);
-Mogo.set_value(true);
-pros::delay(50);
-///Stack
-chassis.turnToPoint(55, 3, 900, {}, false);
-Hook.move(-127);
-chassis.moveToPoint(55, 3, 1000);
-IntakePiston.set_value(true);
-Intake.move(127);
-pros::delay(100);
-chassis.turnToPoint(66, -48, 700, {.forwards=false}, false);
-IntakePiston.set_value(false);
-chassis.moveToPoint(66, -48, 1000, {.forwards=false}, false);
-pros::delay(200);
-Mogo.set_value(false);
-//Grab Other mogo
-Hook.move(0);
-chassis.turnToPoint(12, -25.5, 700, {});
-chassis.moveToPoint(12, -25.5, 1200, {});
-chassis.turnToPoint(12, -60, 700, {.forwards=false}); 
-chassis.moveToPoint(12, -60, 1500, {.forwards=false, .maxSpeed = 60}, false   );
-Mogo.set_value(true); 
-pros::delay(50);
-//Stack
-Hook.move(-127);
-chassis.turnToHeading(75, 700);
-Doinker.set_value(true);
-chassis.moveToPoint(24, -48, 1000, {}, false);
-chassis.turnToPoint(22, -13, 700);
-chassis.moveToPoint(22, -13, 1000,{}, false);
-Hook.move(0);
-chassis.turnToHeading(25, 1000);
-// 4 ring stacks disrupt
+chassis.moveToPoint(41.41, -57.63, 15000, {.forwards=false}, false);
 
 
 
@@ -671,7 +658,8 @@ void RedNeg4_1(){
 // set up
 chassis.setBrakeMode(pros::E_MOTOR_BRAKE_HOLD);
 LB.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
-BlueTeam = true;
+BlueTeam = false;
+RedTeam = true;
 chassis.setPose(-60,12, -180);
 Mogo.set_value(false);
 

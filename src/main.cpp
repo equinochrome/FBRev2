@@ -54,7 +54,12 @@ void initialize() {
 rotationSensor3.reset_position();
 chassis.calibrate();
 
-
+    pros::Task colorSortTask([]{
+        while (true) {
+            ColorSort();
+            pros::delay(10);
+        }
+    });
 
     pros::Task liftControlTask([]{
         while (true) {
@@ -62,7 +67,19 @@ chassis.calibrate();
             pros::delay(10);
         }
     });
-    
+    pros::lcd::initialize(); // initialize brain screen
+    // print position to brain screen
+    pros::Task screen_task([&]() {
+        while (true) {
+            // print robot location to the brain screen
+            pros::lcd::print(0, "X: %f", chassis.getPose().x); // x
+            pros::lcd::print(1, "Y: %f", chassis.getPose().y); // y
+            pros::lcd::print(2, "Theta: %f", chassis.getPose().theta); // heading
+            // delay to save resources
+            pros::delay(20);
+        }
+    });
+    controller.set_text(0, 0, "sigma");
 }
 
 
@@ -80,7 +97,7 @@ void autonomous() {
         LB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 	        selector.run_auton();
     // REMOVE BEFORE COMPETITION    
-    BlueNegElims();
+    BlueMidRush1();
 }
 
 
