@@ -12,7 +12,7 @@ void ColorSort(){
     pastVoltage = Hook.get_voltage();
 
     if (BlueTeam) {
-        if(color.get_hue() < 25){
+        if(color.get_hue() < 15){
             pros::delay(98);
             Hook.move(0);
             pros::delay(300);
@@ -330,20 +330,46 @@ void BlueMidRush1(){
 //Set up for BLUEMIDRUSH (QUALS)
 chassis.setBrakeMode(pros::E_MOTOR_BRAKE_HOLD);
 BlueTeam = true;
+RedTeam = false;
 chassis.setPose(49.643,-60.256, 288.13);
+Intake.move(127);
 Mogo.set_value(false);
 Doinker.set_value(true);
 //Get mid mogo
 chassis.moveToPoint(21, -50.88974, 1000, {.minSpeed = 127}, false);
 Doinker.set_value(false);
-chassis.moveToPoint(41.41, -57.63, 15000, {.forwards=false}, false);
-
-
-
-
-
+pros::delay(290);
+chassis.moveToPoint(30 ,-50.175, 15000, {.forwards=false}, false);
+Doinker.set_value(true);
+pros::delay(50);
+chassis.turnToPoint(22, -24, 700, {.forwards=false}, false);
+chassis.moveToPoint(22, -24, 1000, {.forwards=false, .maxSpeed=60}, false);
+Mogo.set_value(true);
+Doinker.set_value(false);
+pros::delay(300);
+Hook.move(-127);
+chassis.turnToPoint(58, -30, 700);
+chassis.moveToPoint(58, -30, 700, {}, false);
+chassis.turnToPoint(63, -52, 700, {});
+Doinker.set_value(true);
+chassis.moveToPoint(63, -52, 1000, {}, false);  
+chassis.turnToHeading(230, 700);
+Doinker.set_value(false);
+Hook.move(0);
+chassis.moveToPoint(50, -60, 700, {}, false);
+chassis.moveToPoint(36, -60 , 1000, {.maxSpeed = 100});
+Mogo.set_value(false);
+pros::delay(50);
+chassis.turnToPoint(24, -24, 700);
+Hook.move_absolute(20000, -127);
+chassis.moveToPoint(24, -24, 1000, {}, false);
+chassis.turnToPoint(13, -46, 1000, {.forwards=false});
+chassis.moveToPoint(10, -55, 3500, {.forwards = false, .maxSpeed = 60}, false);
+Mogo.set_value(true);
+chassis.moveToPose(36, -45, 90, 10000);
+pros::delay(300);
+Hook.move(-127);
 }
-
 
 void BlueMidRushExtropy(){
 //Get mid mogo
@@ -497,9 +523,9 @@ Mogo.set_value(false);
 
 Doinker.set_value(true);
 Intake.move(127);
-chassis.moveToPoint(-17, -46.06069, 1000, {.minSpeed=127}, false);
+chassis.moveToPoint(-21, -45.06069, 1000, {.minSpeed=127}, false);
 Doinker.set_value(false);
-pros::delay(100);
+pros::delay(300);
 chassis.moveToPoint(-30, -42.15599, 1000, {.forwards=false}, false);
 Doinker.set_value(true);
 pros::delay(20);
@@ -512,10 +538,10 @@ chassis.moveToPoint(-23, -22, 1000, {.forwards=false, .maxSpeed=60}, false);
 Mogo.set_value(true);
 pros::delay(100);
 Hook.move(-127);
-chassis.moveToPoint(-22, -55, 1000);
+chassis.moveToPoint(-22, -56, 1000);
 chassis.swingToHeading(270, lemlib::DriveSide::RIGHT, 700, {}, false);
 Doinker.set_value(true);
-chassis.moveToPoint(-53, -66, 1000, {}, false);
+chassis.moveToPoint(-53, -67, 1000, {}, false);
 Hook.move(0);
 chassis.turnToHeading(330, 1000, {.minSpeed=100}, false);
 pros::delay(50);
@@ -523,17 +549,27 @@ Hook.move(-127);
 Doinker.set_value(false);
 chassis.moveToPoint(-58, -38, 1000);
 chassis.swingToHeading(241, lemlib::DriveSide::RIGHT, 700, {}, false);
-chassis.moveToPoint(-61, -55, 700, {}, false);
+chassis.moveToPoint(-61, -59, 700, {}, false);
 Hook.move(0);
+Hook.move(0);
+
+Hook.move(0);
+
+Hook.move(0);
+
+
 chassis.turnToPoint(-20, -22, 1000, {.direction = lemlib::AngularDirection::CW_CLOCKWISE, .minSpeed=80});
 pros::delay(200);
 Mogo.set_value(false);
 Intake.move(0);
 chassis.moveToPoint(-24, -24, 1000, {}, false);
-chassis.turnToPoint(-10, -40, 700, {.forwards=false});
-chassis.moveToPoint(-10, -44, 1000, {.forwards=false}, false);
+chassis.turnToPoint(-9, -40, 700, {.forwards=false});
+chassis.moveToPoint(-9, -44, 1000, {.forwards=false, .maxSpeed = 80}, false);
 Mogo.set_value(true);
 pros::delay(100);
+Hook.move(-127);
+chassis.moveToPose(-30, -45, -90, 10000);
+
 //Doinker.set_value(true);
 //target = 16100;
 //chassis.moveToPoint(-5, -29, 700);

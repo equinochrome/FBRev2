@@ -97,7 +97,7 @@ void autonomous() {
         LB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 	        selector.run_auton();
     // REMOVE BEFORE COMPETITION    
-    BlueMidRush1();
+    RedMidRush1();
 }
 
 
@@ -111,7 +111,7 @@ LB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 IntakePiston.set_value(false);
 Doinker.set_value(false);
 target=50;
-
+color.set_led_pwm(0);
 if(controller.get_digital(DIGITAL_Y)){
     nextState();
     nextState();
@@ -139,18 +139,14 @@ if(controller.get_digital(DIGITAL_Y)){
 
 
         if(controller.get_digital(DIGITAL_R2)){
-    color.set_led_pwm(100);
     Hook.move(-127);
     Intake.move(127);
         } else if(controller.get_digital(DIGITAL_X)){
-    color.set_led_pwm(0);
     Hook.move(127);
     Intake.move(-127);
         } else if(controller.get_digital(DIGITAL_L1)){
-    color.set_led_pwm(0);
     Intake.move(127);
         } else {
-    color.set_led_pwm(0);
     Hook.move(0);
     Intake.move(0);
 }
@@ -169,7 +165,12 @@ if(controller.get_digital(DIGITAL_Y)){
         Mogo.set_value(false);
         } else 
         Mogo.set_value(true);
-        
+    
+    if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_B)){
+        Tipper.set_value(true);
+        } else
+        Tipper.set_value(false);
+    
    
 
         // delay to save resources
