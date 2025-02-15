@@ -82,6 +82,7 @@ BlueTeam=true;
 chassis.setBrakeMode(pros::E_MOTOR_BRAKE_HOLD);
 LB.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
 BlueTeam = true;
+RedTeam = false;
 chassis.setPose(60,12, 180);
 Mogo.set_value(false);
 
@@ -106,14 +107,13 @@ pros::delay(100);
 chassis.moveToPoint(30, 47, 1000, {}, false);
 pros::delay(400);
 // score ring from 2 ring stack near alliance stake; ring on top of the stack. begin lb ladder touch
-IntakePiston.set_value(true);
 LB.move_relative(1200, 127);
-chassis.moveToPose(48, 6, 180, 3000, {.lead = .4, .minSpeed = 70}, false);
-IntakePiston.set_value(false);
+chassis.turnToPoint(48,22, 700, {}, false);
+chassis.moveToPoint(48,22, 2000, {}, false);
+chassis.moveToPoint(48, -12, 3000 ,{ .maxSpeed = 60}, false);
 target=6000;
 
 // touch ladder
-chassis.moveToPose(15, 9, 45, 4000, {.forwards = false, .lead = .4, .minSpeed=70}, false);
 
 // print coordinates to console
 while(true){
