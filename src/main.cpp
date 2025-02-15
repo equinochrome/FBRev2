@@ -31,10 +31,13 @@ rd::Selector selector({
 {"RedNegQuals", &RedNeg4_1},
 {"BlueNegSAWP", &BluePos2},
 {"RedNegSAWP", &RedSoloAWP},
-
-
-
-{"test", &test},
+{"BlueAWPPUSH", &BlueSoloAWAPPush},
+{"BlueMidRush", &BlueMidRush1},
+{"RedMidrush", &RedMidRush1},
+{"skills", &skills},
+{"RedSixRing", &RedNeg6_1},
+{"DriveFwd", &DriveFwd},
+{"colorsort", &test} 
 
 
 
@@ -67,19 +70,10 @@ chassis.calibrate();
             pros::delay(10);
         }
     });
-    pros::lcd::initialize(); // initialize brain screen
-    // print position to brain screen
-    pros::Task screen_task([&]() {
-        while (true) {
-            // print robot location to the brain screen
-            pros::lcd::print(0, "X: %f", chassis.getPose().x); // x
-            pros::lcd::print(1, "Y: %f", chassis.getPose().y); // y
-            pros::lcd::print(2, "Theta: %f", chassis.getPose().theta); // heading
-            // delay to save resources
-            pros::delay(20);
-        }
-    });
-    controller.set_text(0, 0, "sigma");
+   
+
+
+    controller.set_text(1, 1, "sigma");
 }
 
 
@@ -90,14 +84,14 @@ void competition_initialize() {}
 
 
 void autonomous() {
-    
+    color.set_led_pwm(100);
+
     LB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
     pros::delay(100);
         //console.println("Erm what the sigma");
         LB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-	        selector.run_auton();
+	  selector.run_auton();
     // REMOVE BEFORE COMPETITION    
-    RedMidRush1();
 }
 
 
