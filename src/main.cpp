@@ -36,6 +36,7 @@ rd::Selector selector({
 {"RedMidrush", &RedMidRush1},
 {"skills", &skills},
 {"RedSixRing", &RedNeg6_1},
+{"RedFakeRus", &RedFakeRush},
 {"DriveFwd", &DriveFwd},
 {"colorsort", &test} 
 
@@ -70,7 +71,7 @@ chassis.calibrate();
             pros::delay(10);
         }
     });
-   
+  
 
 
     controller.set_text(1, 1, "sigma");
@@ -92,6 +93,7 @@ void autonomous() {
         LB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 	  selector.run_auton();
     // REMOVE BEFORE COMPETITION    
+    RedFakeRush();
 }
 
 

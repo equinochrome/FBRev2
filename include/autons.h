@@ -37,6 +37,8 @@ void BluePosQuals();
 
 void BlueNegElims();
 
+void RedFakeRush();
+
 // Other stuff
 
 void liftControl();
@@ -46,3 +48,5 @@ void nextState();
 void ColorSort();
 
 void DriveFwd();
+
+
