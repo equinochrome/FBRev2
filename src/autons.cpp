@@ -999,23 +999,22 @@ chassis.moveToPoint(-48, 0, 1000);
 Hook.move(-127);
 IntakePiston.set_value(false);
 //Corner Stack
-chassis.turnToPoint(-25, -55, 700);
-chassis.moveToPoint(-25, -55, 2000, { .minSpeed = 70});
-chassis.turnToPoint(-56, -67, 700);
-chassis.moveToPoint(-56, -67, 1000, {.maxSpeed = 90});
+chassis.turnToPoint(-25, -55, 700, {.forwards = false});
+chassis.moveToPoint(-25, -55, 2000, {.forwards = false, .minSpeed = 70});
+chassis.turnToPoint(-54, -67, 700);
+chassis.moveToPoint(-54, -67, 1000, {.maxSpeed = 80});
 Doinker.set_value(true);
 chassis.turnToHeading(340, 700, {.minSpeed = 127}, false);
 Doinker.set_value(false);
 chassis.moveToPoint(-66, -44, 1000,{.maxSpeed = 60}, false);
+//Hook.move(0);
 chassis.turnToHeading(180, 700);
-chassis.moveToPoint(-66, -64, 1000, {.maxSpeed = 70});
-chassis.moveToPoint(-66, -50, 1000, {.maxSpeed = 70}, false);
-chassis.moveToPoint(-66, -64, 1000);
-Hook.move(0);
-//Drop Mogo in Corner
-Intake.move(-127);
-chassis.turnToPoint(-15, -15, 800, {}, false);
+//pros::delay(100);
+//Hook.move(-127);
+chassis.moveToPoint(-66, -60, 1000, {.maxSpeed = 70}, false);
+chassis.turnToPoint(-48, -48, 700, {}, false);
 Mogo.set_value(false);
-chassis.moveToPoint(-66,  -66, 1000, {.forwards = false}, false);
-chassis.moveToPoint(-16, -18, 1000);
+chassis.moveToPoint(-64, -64, 600, {.forwards = false, .maxSpeed = 60}, false);
+
+
 }
