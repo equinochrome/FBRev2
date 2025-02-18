@@ -47,6 +47,8 @@ void nextState();
 
 void ColorSort();
 
+void BlueStop();
+
 void DriveFwd();
 
 

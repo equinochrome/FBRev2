@@ -120,4 +120,5 @@ static lemlib::Chassis chassis(drivetrain, // drivetrain settings
 // Other stuff
 static bool BlueTeam = false;
 static bool RedTeam = false;
+static bool Auto = false;
 

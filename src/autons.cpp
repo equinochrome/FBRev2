@@ -32,6 +32,14 @@ void ColorSort(){
     }
 }
 
+void BlueStop(){
+    if (Auto && RedTeam){
+        if(color.get_hue() > 200){
+            Hook.move(0);
+        }
+    }
+}
+
 void nextState() {
     currState += 1;
     if (currState == numStates) {
@@ -977,8 +985,9 @@ void DriveFwd(){
 void RedFakeRush(){
     //Red Fake Rush
     // set up
-RedTeam = true;
-BlueTeam=false;
+
+ RedTeam = true;
+ BlueTeam=false;
 chassis.setBrakeMode(pros::E_MOTOR_BRAKE_HOLD);
 LB.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
 chassis.setPose(-49.643,-36.256, 108.13);
@@ -999,22 +1008,36 @@ chassis.moveToPoint(-48, 0, 1000);
 Hook.move(-127);
 IntakePiston.set_value(false);
 //Corner Stack
-chassis.turnToPoint(-25, -55, 700, {.forwards = false});
+// chassis.turnToPoint(-25, -55, 700, {.forwards = false});
 chassis.moveToPoint(-25, -55, 2000, {.forwards = false, .minSpeed = 70});
-chassis.turnToPoint(-54, -67, 700);
-chassis.moveToPoint(-54, -67, 1000, {.maxSpeed = 80});
+pros::delay(200);
+Hook.move(0);
+chassis.turnToPoint(-54, -65, 700);
+chassis.moveToPoint(-59, -65, 2500, {.maxSpeed = 80});
+Hook.move(-127);
+//Clear Stack
 Doinker.set_value(true);
-chassis.turnToHeading(340, 700, {.minSpeed = 127}, false);
+Hook.move(0);
+chassis.turnToHeading(340, 700, {.minSpeed = 115}, false);
 Doinker.set_value(false);
-chassis.moveToPoint(-66, -44, 1000,{.maxSpeed = 60}, false);
-//Hook.move(0);
-chassis.turnToHeading(180, 700);
-//pros::delay(100);
-//Hook.move(-127);
-chassis.moveToPoint(-66, -60, 1000, {.maxSpeed = 70}, false);
+Hook.move(-127);
+//Intake Ring 1
+chassis.moveToPoint(-69, -44, 1000, {});
+//chassis.moveToPoint(-63, -50, 700, {}, false);
+//Turn to stack
+chassis.turnToPoint(-70, -62, 700, {});
+chassis.moveToPoint(-70, -62, 1000, {},false);
+//BACKSHOTS
+// chassis.moveToPoint(-66, -50, 1000, {.forwards = false}, false);
+// chassis.moveToPoint(-66, -62, 1000);
+//Corner
 chassis.turnToPoint(-48, -48, 700, {}, false);
+pros::delay(500);
 Mogo.set_value(false);
-chassis.moveToPoint(-64, -64, 600, {.forwards = false, .maxSpeed = 60}, false);
-
+pros::delay(50);
+chassis.moveToPoint(-64, -64, 1000, {.forwards = false});
+//Ladder
+chassis.moveToPoint(-16, -16 , 1500, {}, false);
+chassis.turnToHeading(-80, 700);
 
 }

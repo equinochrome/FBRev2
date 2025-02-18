@@ -71,7 +71,18 @@ chassis.calibrate();
             pros::delay(10);
         }
     });
-  
+
+  pros::lcd::initialize();
+  pros::Task screen_task([&]() {
+    while (true) {
+        // print robot location to the brain screen
+        pros::lcd::print(0, "X: %f", chassis.getPose().x); // x
+        pros::lcd::print(1, "Y: %f", chassis.getPose().y); // y
+        pros::lcd::print(2, "Theta: %f", chassis.getPose().theta); // heading
+        // delay to save resources
+        pros::delay(20);
+    }
+});
 
 
     controller.set_text(1, 1, "sigma");
@@ -103,6 +114,7 @@ void autonomous() {
 
 void opcontrol() {   
 bool MogoState = false;
+bool Auto = false;
 LB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 IntakePiston.set_value(false);
 Doinker.set_value(false);
