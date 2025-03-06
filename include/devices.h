@@ -11,7 +11,7 @@
 
 static const int numStates = 3;
 //make sure these are in centidegrees (1 degree = 100 centidegrees)
-static int states[numStates] = {50, 3700, 16100};
+static int states[numStates] = {50, 3625, 16100};
 static int currState = 0;
 static int target = 0;
 
@@ -50,7 +50,7 @@ static pros::Imu imu(4);
 // create a v5 rotation sensor on port 7
 static pros::Rotation rotation_sensor(-1);
 static pros::Rotation rotation_sensor2(19);
-static pros::Rotation rotationSensor3(-3);
+static pros::Rotation rotationSensor3(3);
 // create a distance sensor for lb distance
 static pros::Distance color_dist(7);
 static pros::adi::DigitalIn limit('A');

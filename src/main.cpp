@@ -67,6 +67,7 @@ chassis.calibrate();
 
     pros::Task liftControlTask([]{
         while (true) {
+            
             liftControl();
             pros::delay(10);
         }
@@ -104,7 +105,7 @@ void autonomous() {
         LB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 	  selector.run_auton();
     // REMOVE BEFORE COMPETITION    
-    RedFakeRush();
+    skills();
 }
 
 

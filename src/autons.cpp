@@ -5,6 +5,7 @@
 #include "pros/rtos.hpp" // IWYU pragma: keep 
 #include "robodash/api.h" // IWYU pragma: keep
 #include <cstdio>
+#include <cmath>
 
 int pastVoltage = 0;
 
@@ -48,11 +49,15 @@ void nextState() {
     target = states[currState];
 }
 
+double prevError = 0;
 
 void liftControl() {
     double kp = .015;
+    double kd = 0.05;
     double error = target - rotationSensor3.get_position();
-    double velocity = kp * error;
+    double deriv = error - prevError;
+    prevError = error;
+    double velocity = kp * error + deriv * kd;
     LB.move(velocity);
 }
 
@@ -215,7 +220,7 @@ Hook.move(0);
 chassis.turnToHeading(180, 700);
 chassis.moveToPoint(47.5, 26, 1000, {.forwards = false, .maxSpeed = 45}, false);
 Mogo.set_value(true);
-pros::delay(100);
+pros::delay(200);
 // score first ring
 chassis.turnToHeading(270, 700, {}, false);
 Hook.move(-127);
@@ -230,9 +235,9 @@ chassis.turnToPoint(-2, 44, 700, {.forwards = false}, false);
 chassis.moveToPoint(-2, 44, 1000, {.forwards = false}, false);
 Hook.move(0);
 chassis.turnToHeading(0, 700, {}, false);
-Hook.move(-80);
+// Hook.move(-80); // extra push
 chassis.moveToPoint(-2, 67, 800, {.maxSpeed = 100}, false);
-Hook.move_relative(135, 127);
+Hook.move_relative(135, 127); // retract
 target=16100;
 pros::delay(500);
 // score third through fifth rings
@@ -274,9 +279,9 @@ chassis.turnToPoint(-1.5, -44, 700, {.forwards = false}, false);
 chassis.moveToPoint(-1.5, -44, 1000, {.forwards = false}, false);
 Hook.move(0);
 chassis.turnToHeading(180, 700, {}, false);
-Hook.move(-80);
+// Hook.move(-80); // extra push
 chassis.moveToPoint(-1.5, -66, 800, {}, false);
-Hook.move_relative(105, 127);
+Hook.move_relative(105, 127); // retract
 target=16100;
 pros::delay(500);
 // score third through fifth rings
@@ -350,7 +355,7 @@ Hook.move(127);
 pros::delay(300);
 
 chassis.moveToPoint(-38, 36, 1000, {}, false);
-target=16100;
+// target=16100; // hang up
 chassis.turnToPoint(-0, 0, 700, {.forwards=false}, false);
 
 pros::delay(200);
