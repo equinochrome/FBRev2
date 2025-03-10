@@ -6,12 +6,13 @@
 #include "pros/imu.hpp" // IWYU pragma: keep
 #include "pros/misc.hpp" // IWYU pragma: keep
 #include "pros/motor_group.hpp" // IWYU pragma: keep
+#include "pros/motors.hpp"
 #include "pros/optical.hpp" 
 #include "pros/rotation.hpp"
 
 static const int numStates = 3;
 //make sure these are in centidegrees (1 degree = 100 centidegrees)
-static int states[numStates] = {50, 3625, 16100};
+static int states[numStates] = {50, 3450, 16100};
 static int currState = 0;
 static int target = 0;
 
@@ -32,6 +33,7 @@ static pros::adi::DigitalOut Mogo('E');
 static pros::adi::DigitalOut Tipper('B');
 static pros::Optical color(18);
 static pros::Distance rightDistance(9);
+static pros::adi::DigitalOut Clamp('F');
 
 // drivetrain settings
 static lemlib::Drivetrain drivetrain(&left_motors, // left motor group

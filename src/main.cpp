@@ -73,17 +73,7 @@ chassis.calibrate();
         }
     });
 
-  pros::lcd::initialize();
-  pros::Task screen_task([&]() {
-    while (true) {
-        // print robot location to the brain screen
-        pros::lcd::print(0, "X: %f", chassis.getPose().x); // x
-        pros::lcd::print(1, "Y: %f", chassis.getPose().y); // y
-        pros::lcd::print(2, "Theta: %f", chassis.getPose().theta); // heading
-        // delay to save resources
-        pros::delay(20);
-    }
-});
+  
 
 
     controller.set_text(1, 1, "sigma");
@@ -105,7 +95,7 @@ void autonomous() {
         LB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 	  selector.run_auton();
     // REMOVE BEFORE COMPETITION    
-    skills();
+    BluePos2();
 }
 
 
@@ -116,6 +106,7 @@ void autonomous() {
 void opcontrol() {   
 bool MogoState = false;
 bool Auto = false;
+bool clampState = false;
 LB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 IntakePiston.set_value(false);
 Doinker.set_value(false);
@@ -179,6 +170,11 @@ if(controller.get_digital(DIGITAL_Y)){
         Tipper.set_value(true);
         } else
         Tipper.set_value(false);
+
+    if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A)) {
+            clampState = !clampState; // Toggle clamp state
+            Clamp.set_value(clampState); // Set Clamp to the new state
+        }
     
    
 
